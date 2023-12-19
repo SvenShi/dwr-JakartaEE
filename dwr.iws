@@ -4,199 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4ca8dc0-8eab-4a91-b256-826bd4007b97" name="Changes" comment="refactor: Support Java17 and migrate JavaX to JakartaEE">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/commons-fileupload2-core-2.0.0-M1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/commons-fileupload2-jakarta-2.0.0-M1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/commons-io-2.15.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jakarta.annotation-api-3.0.0-M1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jakarta.servlet-api-6.1.0-M1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jakarta.servlet.jsp-api-4.0.0-M1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jetty-ee10-servlet-12.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jetty-ee10-webapp-12.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jetty-http-12.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jetty-io-12.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jetty-server-12.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jetty-util-12.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/api/lib/jetty-xml-12.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/impl/main/java/dwr-JakartaEE-version.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dwr.iws" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/spring/lib/spring-aop-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/spring/lib/spring-beans-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/spring/lib/spring-context-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/spring/lib/spring-core-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/spring/lib/spring-test-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/spring/lib/spring-web-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/spring/lib/spring-webmvc-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverside/various/lib/jakarta.jms-api-3.1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/annotations-api.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/commons-fileupload-1.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/commons-fileupload-LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/commons-io-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/commons-io-LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/javax.servlet-api-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jetty-continuation-7.0.1.v20091125.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jetty-http-7.0.1.v20091125.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jetty-io-7.0.1.v20091125.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jetty-server-7.0.1.v20091125.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jetty-servlet-7.0.1.v20091125.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jetty-util-7.0.1.v20091125.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jetty-webapp-7.0.1.v20091125.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/lib/jsp-api-2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/Browser.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/Browser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/ScriptSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/ScriptSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/ServerContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/ServerContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/ServerContextFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/ServerContextFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/WebContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/WebContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/WebContextFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/WebContextFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/datasync/PerHttpSessionStoreProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/datasync/PerHttpSessionStoreProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/datasync/StoreProviderFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/datasync/StoreProviderFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/event/ScriptSessionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/event/ScriptSessionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/event/SessionProgressListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/event/SessionProgressListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/extend/ContainerAbstraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/extend/ContainerAbstraction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/extend/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/extend/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/extend/ScriptSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/extend/ScriptSessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/BrowserDetect.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/BrowserDetect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/DelegatingServletInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/DelegatingServletInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/DelegatingServletOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/DelegatingServletOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpServletRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpServletRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpServletRequestObject24.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpServletRequestObject24.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpServletResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpServletResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeHttpSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeRequestDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeRequestDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeServletConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeServletConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeServletContextFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeServletContextFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeServletContextObject24.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/FakeServletContextObject24.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/LocalUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/LocalUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/ServletLoggingOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/ServletLoggingOutput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/SwallowingHttpServletResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/SwallowingHttpServletResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/VersionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/VersionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/WriterOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/main/java/org/directwebremoting/util/WriterOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/dwr-version.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/convert/FileConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/convert/FileConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/convert/ServletConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/convert/ServletConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/create/ScriptedCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/create/ScriptedCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/defaults.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/defaults.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/dwr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/dwr.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/export/System.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/export/System.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/AbstractServerLoadMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/AbstractServerLoadMonitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/AutoShutdownScheduledThreadPoolExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/AutoShutdownScheduledThreadPoolExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/BaseSleeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/BaseSleeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultAccessControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultAccessControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultCreatorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultCreatorManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultPageNormalizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultPageNormalizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultRemoter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultRemoter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultScriptSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultScriptSessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultServerContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultServerContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultWebContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultWebContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultWebContextBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DefaultWebContextBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DwrXmlConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/DwrXmlConfigurator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/PurgingDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/PurgingDownloadManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/StartupUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/StartupUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/TestEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/TestEnvironment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/ThreadWaitSleeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/ThreadWaitSleeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/TransientScriptSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/impl/TransientScriptSessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/jsp/ConvertTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/jsp/ConvertTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/jetty/JettyContinuationContainerAbstraction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/jetty/JettyContinuationSleeper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/servlet2/Servlet24ContainerAbstraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/servlet2/Servlet24ContainerAbstraction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/servlet3/Servlet30ContainerAbstraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/servlet3/Servlet30ContainerAbstraction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/servlet3/Servlet30Sleeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/server/servlet3/Servlet30Sleeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/AboutHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/AboutHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/CachingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/CachingHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DownloadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DownloadHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DwrListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DwrListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DwrServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DwrServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DwrWebContextFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/DwrWebContextFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/ExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/IndexHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/IndexHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/NotFoundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/NotFoundHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/PublicPeriodCacheableResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/PublicPeriodCacheableResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/PublicRevalidatingResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/PublicRevalidatingResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/ResponseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/ResponseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/TestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/TestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/UncacheableResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/UncacheableResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/UncacheableUntransformableResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/UncacheableUntransformableResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/UrlProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/main/java/org/directwebremoting/servlet/UrlProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/test/java/org/directwebremoting/create/test/DummyDataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/test/java/org/directwebremoting/create/test/DummyDataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/test/java/org/directwebremoting/impl/test/TestCreatedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/test/java/org/directwebremoting/impl/test/TestCreatedObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/impl/test/java/org/directwebremoting/servlet/DwrServletTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/impl/test/java/org/directwebremoting/servlet/DwrServletTest.java" afterDir="false" />
+    <list default="true" id="d4ca8dc0-8eab-4a91-b256-826bd4007b97" name="Changes" comment="refactor: Support Java17 and migrate JavaX to JakartaEE. update dependence">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dwr.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/dwr.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/dwr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/dwr.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/dwrp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/dwrp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/guice.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/guice.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/hibernate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/hibernate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/json.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/json.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/spring.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/spring.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/intellij/struts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/intellij/struts.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/BaseCallHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/BaseCallHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/BaseDwrpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/BaseDwrpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/BasePollHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/BasePollHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/Batch.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/Batch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/CallBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/CallBatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/CommonsFileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/CommonsFileUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/FileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/FileUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/PollBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/PollBatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/UnsupportedFileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/dwrp/main/java/org/directwebremoting/dwrp/UnsupportedFileUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonp/JsonpCallHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonp/JsonpCallHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonrpc/JsonRpcCallHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonrpc/JsonRpcCallHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonrpc/io/JsonRpcCallException.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonrpc/io/JsonRpcCallException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonrpc/io/JsonRpcCallsJsonDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/json/main/java/org/directwebremoting/jsonrpc/io/JsonRpcCallsJsonDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/json/test/java/org/directwebremoting/jsonrpc/JsonRpcCallHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/json/test/java/org/directwebremoting/jsonrpc/JsonRpcCallHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/AbstractDwrGuiceServletContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/AbstractDwrGuiceServletContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrGuiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrGuiceServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrGuiceServletModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrGuiceServletModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrGuiceUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrGuiceUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrScopes.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/DwrScopes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/spring/WebApplicationContextLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/guice/main/java/org/directwebremoting/guice/spring/WebApplicationContextLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/hibernate/main/java/org/directwebremoting/hibernate/H3PropertyDescriptorProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/hibernate/main/java/org/directwebremoting/hibernate/H3PropertyDescriptorProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/hibernate/main/java/org/directwebremoting/hibernate/H3SessionAjaxFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/hibernate/main/java/org/directwebremoting/hibernate/H3SessionAjaxFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/hibernate/test/java/org/directwebremoting/hibernate/DatabaseInitServletContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/hibernate/test/java/org/directwebremoting/hibernate/DatabaseInitServletContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/hibernate/test/java/org/directwebremoting/hibernate/HibernateConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/hibernate/test/java/org/directwebremoting/hibernate/HibernateConverterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-aop-3.2.14.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-beans-3.2.14.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-context-3.2.14.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-core-3.2.14.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-mock.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-web-3.2.14.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/lib/spring-webmvc-3.2.14.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/DwrController.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/DwrController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/DwrSpringServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/DwrSpringServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/SpringCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/SpringCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/namespace/ConfigurationParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/spring/main/java/org/directwebremoting/spring/namespace/ConfigurationParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/struts/lib/struts-1.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/struts/lib/struts-1.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/struts/main/java/org/directwebremoting/struts/StrutsCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/struts/main/java/org/directwebremoting/struts/StrutsCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/lib/javax.jms-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/lib/jms-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/beehive/PageFlowCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/beehive/PageFlowCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/BlockingMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/BlockingMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrConnectionFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrConnectionMetaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrConnectionMetaData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrDestination.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrDestination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrMessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrMessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrMessageProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrTopic.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/DwrTopic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/Unsupported.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/main/java/org/directwebremoting/jms/Unsupported.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/various/test/java/org/directwebremoting/jms/JmsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/various/test/java/org/directwebremoting/jms/JmsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/webwork/main/java/org/directwebremoting/webwork/DWRAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/webwork/main/java/org/directwebremoting/webwork/DWRAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverside/webwork/main/java/org/directwebremoting/webwork/IDWRActionProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverside/webwork/main/java/org/directwebremoting/webwork/IDWRActionProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/dwr/demo/java/com/example/dwr/simple/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/dwr/demo/java/com/example/dwr/simple/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/dwr/demo/java/com/example/dwr/simple/Intro.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/dwr/demo/java/com/example/dwr/simple/Intro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/dwr/demo/web/simple/resource.html" beforeDir="false" afterPath="$PROJECT_DIR$/ui/dwr/demo/web/simple/resource.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/dwr/main/java/org/directwebremoting/ui/browser/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/dwr/main/java/org/directwebremoting/ui/browser/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dwr.iws" beforeDir="false" afterPath="$PROJECT_DIR$/dwr.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -227,6 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven. [install:install-file...].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -285,7 +107,17 @@
       <option name="presentableId" value="Default" />
       <updated>1702610400012</updated>
       <workItem from="1702610401080" duration="14994000" />
+      <workItem from="1702966688131" duration="770000" />
     </task>
+    <task id="LOCAL-00001" summary="refactor: Support Java17 and migrate JavaX to JakartaEE. update dependence">
+      <option name="closed" value="true" />
+      <created>1702966907536</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702966907536</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +167,8 @@
   <component name="VcsManagerConfiguration">
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <MESSAGE value="Support java17 and migrate JavaX to JakartaEE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Support java17 and migrate JavaX to JakartaEE" />
+    <MESSAGE value="refactor: Support Java17 and migrate JavaX to JakartaEE. update dependence" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Support Java17 and migrate JavaX to JakartaEE. update dependence" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

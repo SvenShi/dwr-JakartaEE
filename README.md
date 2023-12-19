@@ -29,6 +29,23 @@ execution of the 'build' macrodef.
 
 The ant outputs are stored in dwr/target/ant.
 
+## Install to Maven
+
+After using ant to package the project, run the command in the project root directory.
+Or download the jar package in release and install it, but the path needs to be changed.
+
+```maven
+  mvn install:install-file "-Dfile=dist\lib\dwr-JakartaEE-4.0.0-SNAPSHOT.jar" "-Dsources=dist\lib\dwr-JakartaEE-4.0.0-SNAPSHOT-sources.jar" "-DgroupId=org.directwebremoting" "-DartifactId=dwr-JakartaEE" "-Dversion=4.0.0-SNAPSHOT" "-Dpackaging=jar"
+```
+After installation, you can use the dependency in the project.
+```xml
+<dependency>
+    <groupId>org.directwebremoting</groupId>
+    <artifactId>dwr-JakartaEE</artifactId>
+    <version>4.0.0-SNAPSHOT</version>
+</dependency>
+```
+
 ## Terminology
 
 Module: DWR is made up of a number of modules. The idea is that these modules
@@ -50,7 +67,7 @@ contain a web directory to be merged into an output war file.
 
 DWR is a subproject of Dojo which is a member of the JS Foundation.
 
-© 2005 [JS Foundation](https://js.foundation/) under [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) license.
+ï¿½ 2005 [JS Foundation](https://js.foundation/) under [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) license.
 
 DWR includes derivative works under other copyright notices and distributed according to the terms of their respective licenses, 
 please see [COPYRIGHT.txt](COPYRIGHT.txt) and [LICENSE.txt](LICENSE.txt) for details.
