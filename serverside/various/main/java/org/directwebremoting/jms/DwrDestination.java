@@ -1,6 +1,6 @@
 package org.directwebremoting.jms;
 
-import javax.jms.Destination;
+import jakarta.jms.Destination;
 
 /**
  * An implementation of {@link Destination} for DWR.

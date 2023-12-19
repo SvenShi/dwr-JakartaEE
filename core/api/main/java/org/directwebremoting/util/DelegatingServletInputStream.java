@@ -1,39 +1,39 @@
 package org.directwebremoting.util;
 
+import jakarta.servlet.ReadListener;
+import jakarta.servlet.ServletInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.servlet.ServletInputStream;
-
 /**
  * Delegating implementation of ServletInputStream.
+ *
  * @author Joe Walker [joe at getahead dot ltd dot uk]
  */
-public class DelegatingServletInputStream extends ServletInputStream
-{
+public class DelegatingServletInputStream extends ServletInputStream {
     /**
      * Create a new DelegatingServletInputStream.
+     *
      * @param proxy the sourceStream InputStream
      */
-    public DelegatingServletInputStream(InputStream proxy)
-    {
+    public DelegatingServletInputStream(InputStream proxy) {
         this.proxy = proxy;
     }
 
     /**
      * Accessor for the stream that we are proxying to
+     *
      * @return The stream we proxy to
      */
-    public InputStream getTargetStream()
-    {
+    public InputStream getTargetStream() {
         return proxy;
     }
 
     /**
      * @return The stream that we proxy to
      */
-    public InputStream getSourceStream()
-    {
+    public InputStream getSourceStream() {
         return proxy;
     }
 
@@ -41,8 +41,7 @@ public class DelegatingServletInputStream extends ServletInputStream
      * @see java.io.InputStream#read()
      */
     @Override
-    public int read() throws IOException
-    {
+    public int read() throws IOException {
         return proxy.read();
     }
 
@@ -50,11 +49,28 @@ public class DelegatingServletInputStream extends ServletInputStream
      * @see java.io.InputStream#close()
      */
     @Override
-    public void close() throws IOException
-    {
+    public void close() throws IOException {
         super.close();
         proxy.close();
     }
 
     private final InputStream proxy;
+
+    @Override
+    public boolean isFinished() {
+        try {
+            return this.proxy.available() <= 0;
+        } catch (IOException e) {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean isReady() {
+        return true;
+    }
+
+    @Override
+    public void setReadListener(ReadListener readListener) {
+    }
 }

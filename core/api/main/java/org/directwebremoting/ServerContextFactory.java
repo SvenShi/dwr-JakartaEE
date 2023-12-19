@@ -1,6 +1,6 @@
 package org.directwebremoting;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.directwebremoting.extend.Builder;
 import org.directwebremoting.extend.Factory;

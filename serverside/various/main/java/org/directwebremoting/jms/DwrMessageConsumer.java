@@ -1,11 +1,11 @@
 package org.directwebremoting.jms;
 
-import javax.jms.Destination;
-import javax.jms.IllegalStateException;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageListener;
+import jakarta.jms.Destination;
+import jakarta.jms.IllegalStateException;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.MessageConsumer;
+import jakarta.jms.MessageListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,7 +21,7 @@ import org.directwebremoting.event.MessageEvent;
 public class DwrMessageConsumer implements MessageConsumer
 {
     /**
-     * @see javax.jms.Session#createConsumer(Destination)
+     * @see jakarta.jms.Session#createConsumer(Destination)
      */
     public DwrMessageConsumer(DwrConnection connection, Destination destination) throws JMSException
     {
@@ -30,7 +30,7 @@ public class DwrMessageConsumer implements MessageConsumer
 
     /**
      * @throws JMSException
-     * @see javax.jms.Session#createConsumer(Destination, String)
+     * @see jakarta.jms.Session#createConsumer(Destination, String)
      */
     public DwrMessageConsumer(DwrConnection connection, Destination destination, String messageSelector) throws JMSException
     {
@@ -38,7 +38,7 @@ public class DwrMessageConsumer implements MessageConsumer
     }
 
     /**
-     * @see javax.jms.Session#createConsumer(Destination, String, boolean)
+     * @see jakarta.jms.Session#createConsumer(Destination, String, boolean)
      */
     public DwrMessageConsumer(DwrConnection connection, Destination destination, String messageSelector, boolean noLocal) throws JMSException
     {
@@ -114,7 +114,7 @@ public class DwrMessageConsumer implements MessageConsumer
     {
         this.messageSelector = messageSelector;
 
-        if (messageSelector != null && messageSelector.length() != 0)
+        if (messageSelector != null && !messageSelector.isEmpty())
         {
             throw Unsupported.noMessageSelectors();
         }

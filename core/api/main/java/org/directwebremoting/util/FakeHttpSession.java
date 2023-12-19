@@ -5,8 +5,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -90,16 +90,6 @@ public class FakeHttpSession implements HttpSession
         return maxInactiveInterval;
     }
 
-    /**
-     * @see javax.servlet.http.HttpSession#getSessionContext()
-     * @deprecated
-     */
-    @SuppressWarnings({"UnnecessaryFullyQualifiedName"})
-    @Deprecated
-    public javax.servlet.http.HttpSessionContext getSessionContext()
-    {
-        return null;
-    }
 
     /* (non-Javadoc)
      * @see javax.servlet.http.HttpSession#getAttribute(java.lang.String)

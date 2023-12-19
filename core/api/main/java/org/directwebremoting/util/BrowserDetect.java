@@ -1,6 +1,6 @@
 package org.directwebremoting.util;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,9 +8,9 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Various functions to do with working out what is at the other end of the
  * wire, and what it can do.
- * 
+ *
  * <h2>Version number documentation</h2>
- * 
+ *
  * <h3>Firefox</h3>
  * <p>Quick summary:
  * <ul>
@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
  * <li>Firefox 1.0.8 = Gecko/20060410 - 20060418
  * <li>Firefox 1.4.0 = Gecko/20050908
  * </ul>
- * 
+ *
  * <h3>Safari</h3>
  * <p>Quick summary:
  * <ul>
@@ -32,7 +32,7 @@ import org.apache.commons.logging.LogFactory;
  * <li>Windows           = Safari 3.0.x = WebKit/523
  * <li>Leopard = 10.5.x  = Safari 3.1.x = WebKit/525-526
  * </ul>
- * 
+ *
  * <p>For full information see the Safari and WebKit Version Information:
  * <a href="http://developer.apple.com/internet/safari/uamatrix.html">at Apple
  * Developer Connection</a> and for browsers in general, see this fairly complete

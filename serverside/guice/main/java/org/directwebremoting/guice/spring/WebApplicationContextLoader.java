@@ -1,6 +1,6 @@
 package org.directwebremoting.guice.spring;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.web.context.ContextLoader;

@@ -129,7 +129,7 @@ public class Browser
      * To discover the contextPath at runtime you can use
      * javax.servlet.ServletContext#getContextPath with servlet 2.5, or before
      * version 2.5 you can also use {@link ServerContext#getContextPath} or
-     * {@link javax.servlet.http.HttpServletRequest#getContextPath}.
+     * {@link jakarta.servlet.http.HttpServletRequest#getContextPath}.
      * @param task A code block to execute
      */
     public static void withPage(String page, Runnable task)

@@ -23,7 +23,7 @@ import java.util.Properties;
  */
 public class VersionUtil
 {
-    
+
     /**
      * Fish the version number out of the dwr.properties file.
      * @return The current version number.
@@ -34,7 +34,7 @@ public class VersionUtil
     {
         return getLabel();
     }
-	
+
 	/**
      * @return The major version number of this release
      */
@@ -133,7 +133,7 @@ public class VersionUtil
 
     private static boolean loaded = false;
 
-    private static final String VERSION_FILE_PATH = "/dwr-version.properties";
+    private static final String VERSION_FILE_PATH = "/dwr-JakartaEE-version.properties";
 
     private static final String KEY_MAJOR = "major";
     private static int major;

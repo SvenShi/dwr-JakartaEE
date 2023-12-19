@@ -1,92 +1,68 @@
 package org.directwebremoting.dwrp;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadBase.FileSizeLimitExceededException;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.apache.commons.fileupload2.core.DiskFileItem;
+import org.apache.commons.fileupload2.core.DiskFileItemFactory;
+import org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload;
 import org.directwebremoting.event.SessionProgressListener;
 import org.directwebremoting.extend.FormField;
 import org.directwebremoting.extend.ServerException;
 import org.directwebremoting.extend.SimpleInputStreamFactory;
 import org.directwebremoting.io.InputStreamFactory;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * An implementation of {@link FileUpload} that uses Apache Commons FileUpload.
  * This class with fail to classload if commons-fileupload.jar is not present
  * on the classpath.
+ *
  * @author Joe Walker [joe at getahead dot ltd dot uk]
  */
-public class CommonsFileUpload implements FileUpload
-{
+public class CommonsFileUpload implements FileUpload {
     /* (non-Javadoc)
      * @see org.directwebremoting.dwrp.FileUpload#isMultipartContent(javax.servlet.http.HttpServletRequest)
      */
-    public boolean isMultipartContent(HttpServletRequest req)
-    {
-        return ServletFileUpload.isMultipartContent(req);
+    public boolean isMultipartContent(HttpServletRequest req) {
+        return JakartaServletFileUpload.isMultipartContent(req);
     }
 
     /* (non-Javadoc)
      * @see org.directwebremoting.dwrp.FileUpload#parseRequest(javax.servlet.http.HttpServletRequest)
      */
-    @SuppressWarnings("unchecked")
-    public Map<String, FormField> parseRequest(HttpServletRequest req) throws ServerException
-    {
-        File location = new File(System.getProperty("java.io.tmpdir"));
-        DiskFileItemFactory itemFactory = new DiskFileItemFactory(DEFAULT_SIZE_THRESHOLD, location);
-        ServletFileUpload fileUploader = new ServletFileUpload(itemFactory);
-        if (getFileUploadMaxBytes() > 0)
-        {
-          fileUploader.setFileSizeMax(getFileUploadMaxBytes());
+    public Map<String, FormField> parseRequest(HttpServletRequest req) throws ServerException {
+        DiskFileItemFactory itemFactory = DiskFileItemFactory.builder().get();
+        JakartaServletFileUpload<DiskFileItem, DiskFileItemFactory> fileUploader = new JakartaServletFileUpload<>(
+                itemFactory);
+        if (getFileUploadMaxBytes() > 0) {
+            fileUploader.setFileSizeMax(getFileUploadMaxBytes());
         }
         HttpSession session = req.getSession(false);
-        if (session != null)
-        {
+        if (session != null) {
             fileUploader.setProgressListener(new SessionProgressListener());
             session.setAttribute(PROGRESS_LISTENER, fileUploader.getProgressListener());
         }
 
-        try
-        {
+        try {
             Map<String, FormField> map = new HashMap<String, FormField>();
-            List<FileItem> fileItems = fileUploader.parseRequest(req);
-            for (final FileItem fileItem : fileItems)
-            {
+            List<DiskFileItem> fileItems = fileUploader.parseRequest(req);
+            for (final DiskFileItem fileItem : fileItems) {
                 FormField formField;
-                if (fileItem.isFormField())
-                {
+                if (fileItem.isFormField()) {
                     formField = new FormField(fileItem.getString());
-                }
-                else
-                {
+                } else {
                     InputStreamFactory inFactory = new SimpleInputStreamFactory(fileItem.getInputStream());
-                    formField = new FormField(fileItem.getName(), fileItem.getContentType(), fileItem.getSize(), inFactory);
+                    formField = new FormField(fileItem.getName(), fileItem.getContentType(), fileItem.getSize(),
+                            inFactory);
                 }
                 map.put(fileItem.getFieldName(), formField);
             }
             return map;
-        }
-        catch (FileSizeLimitExceededException fsle)
-        {
-            throw new ServerException("One or more files is larger (" + fsle.getActualSize() + " bytes) than the configured limit (" + fsle.getPermittedSize() + " bytes).");
-        }
-        catch (IOException ex)
-        {
-            throw new ServerException("Upload failed: " + ex.getMessage(), ex);
-        }
-        catch (FileUploadException ex)
-        {
+        } catch (IOException ex) {
             throw new ServerException("Upload failed: " + ex.getMessage(), ex);
         }
     }
@@ -96,8 +72,7 @@ public class CommonsFileUpload implements FileUpload
      *
      * @return long fileUploadMaxBytes
      */
-    public long getFileUploadMaxBytes()
-    {
+    public long getFileUploadMaxBytes() {
         return fileUploadMaxBytes;
     }
 
@@ -106,8 +81,7 @@ public class CommonsFileUpload implements FileUpload
      *
      * @param fileUploadMaxBytes
      */
-    public void setFileUploadMaxBytes(long fileUploadMaxBytes)
-    {
+    public void setFileUploadMaxBytes(long fileUploadMaxBytes) {
         this.fileUploadMaxBytes = fileUploadMaxBytes;
     }
 

@@ -3,7 +3,7 @@ package org.directwebremoting.hibernate;
 import java.lang.reflect.Method;
 import java.util.Set;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.directwebremoting.AjaxFilterChain;
 import org.directwebremoting.WebContextFactory;

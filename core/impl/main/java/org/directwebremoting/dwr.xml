@@ -12,7 +12,6 @@
     <creator id="pageflow" class="org.directwebremoting.beehive.PageFlowCreator"/>
     <creator id="spring" class="org.directwebremoting.spring.SpringCreator"/>
     <creator id="script" class="org.directwebremoting.create.ScriptedCreator"/>
-    <creator id="struts" class="org.directwebremoting.struts.StrutsCreator"/>
     <!--
     These are now in the noncla module
     <creator id="jsf" class="org.directwebremoting.faces.JsfCreator"/>
@@ -125,11 +124,11 @@
     <convert converter="xom" match="nu.xom.Element"/>
     <convert converter="xom" match="nu.xom.Node"/>
 
-    <convert converter="servlet" match="javax.servlet.ServletConfig"/>
-    <convert converter="servlet" match="javax.servlet.ServletContext"/>
-    <convert converter="servlet" match="javax.servlet.http.HttpServletRequest"/>
-    <convert converter="servlet" match="javax.servlet.http.HttpServletResponse"/>
-    <convert converter="servlet" match="javax.servlet.http.HttpSession"/>
+    <convert converter="servlet" match="jakarta.servlet.ServletConfig"/>
+    <convert converter="servlet" match="jakarta.servlet.ServletContext"/>
+    <convert converter="servlet" match="jakarta.servlet.http.HttpServletRequest"/>
+    <convert converter="servlet" match="jakarta.servlet.http.HttpServletResponse"/>
+    <convert converter="servlet" match="jakarta.servlet.http.HttpSession"/>
 
     <convert converter="file" match="java.io.InputStream"/>
     <convert converter="file" match="java.awt.image.BufferedImage"/>

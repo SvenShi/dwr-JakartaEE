@@ -2,8 +2,8 @@ package org.directwebremoting;
 
 import java.util.Collection;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 
 /**
  * ServerContext is something of a misnomer - it refers to a running DwrServlet

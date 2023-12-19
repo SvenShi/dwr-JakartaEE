@@ -1,73 +1,94 @@
 package org.directwebremoting.jms;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionConsumer;
-import javax.jms.Destination;
-import javax.jms.ExceptionListener;
-import javax.jms.JMSException;
-import javax.jms.ServerSessionPool;
-import javax.jms.Session;
-import javax.jms.Topic;
-
+import jakarta.jms.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.directwebremoting.ServerContext;
 
 /**
  * An implementation of {@link Connection} for DWR
+ *
  * @author Joe Walker [joe at getahead dot ltd dot uk]
  */
-public class DwrConnection implements Connection
-{
+public class DwrConnection implements Connection {
     /* (non-Javadoc)
      * @see javax.jms.Connection#createSession(boolean, int)
      */
-    public DwrSession createSession(boolean transacted, int acknowledgeMode) throws JMSException
-    {
-        if (transacted)
-        {
+    public DwrSession createSession(boolean transacted, int acknowledgeMode) throws JMSException {
+        if (transacted) {
             log.error("transacted == true is not currently supported");
         }
 
-        if (acknowledgeMode != Session.AUTO_ACKNOWLEDGE)
-        {
+        if (acknowledgeMode != Session.AUTO_ACKNOWLEDGE) {
             log.error("acknowledgeMode != Session.AUTO_ACKNOWLEDGE is not currently supported");
         }
 
         return new DwrSession(this, transacted, acknowledgeMode);
     }
 
+    @Override
+    public Session createSession(int sessionMode) throws JMSException {
+        boolean transacted = sessionMode == Session.SESSION_TRANSACTED;
+        if (transacted){
+            log.error("transacted == true is not currently supported");
+        }
+        log.error("transacted == true is not currently supported");
+        if (sessionMode != Session.AUTO_ACKNOWLEDGE) {
+            log.error("acknowledgeMode != Session.AUTO_ACKNOWLEDGE is not currently supported");
+        }
+        return new DwrSession(this, transacted, sessionMode);
+    }
+
+    @Override
+    public Session createSession() throws JMSException {
+        return new DwrSession(this, false, Session.AUTO_ACKNOWLEDGE);
+    }
+
     /* (non-Javadoc)
      * @see javax.jms.Connection#createConnectionConsumer(javax.jms.Destination, java.lang.String, javax.jms.ServerSessionPool, int)
      */
-    public ConnectionConsumer createConnectionConsumer(Destination destination, String messageSelector, ServerSessionPool sessionPool, int maxMessages) throws JMSException
-    {
+    public ConnectionConsumer createConnectionConsumer(Destination destination, String messageSelector,
+                                                       ServerSessionPool sessionPool,
+                                                       int maxMessages) throws JMSException {
+        throw Unsupported.noConnectionConsumers();
+    }
+
+    @Override
+    public ConnectionConsumer createSharedConnectionConsumer(Topic topic, String subscriptionName,
+                                                             String messageSelector, ServerSessionPool sessionPool,
+                                                             int maxMessages) throws JMSException {
         throw Unsupported.noConnectionConsumers();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Connection#createDurableConnectionConsumer(javax.jms.Topic, java.lang.String, java.lang.String, javax.jms.ServerSessionPool, int)
      */
-    public ConnectionConsumer createDurableConnectionConsumer(Topic topic, String subscriptionName, String messageSelector, ServerSessionPool sessionPool, int maxMessages) throws JMSException
-    {
+    public ConnectionConsumer createDurableConnectionConsumer(Topic topic, String subscriptionName,
+                                                              String messageSelector, ServerSessionPool sessionPool,
+                                                              int maxMessages) throws JMSException {
+        throw Unsupported.noConnectionConsumers();
+    }
+
+    @Override
+    public ConnectionConsumer createSharedDurableConnectionConsumer(Topic topic, String subscriptionName,
+                                                                    String messageSelector,
+                                                                    ServerSessionPool sessionPool,
+                                                                    int maxMessages) throws JMSException {
         throw Unsupported.noConnectionConsumers();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Connection#getMetaData()
      */
-    public DwrConnectionMetaData getMetaData() throws JMSException
-    {
+    public DwrConnectionMetaData getMetaData() throws JMSException {
         return new DwrConnectionMetaData();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Connection#start()
      */
-    public void start() throws JMSException
-    {
-        if (state == State.CLOSED)
-        {
+    public void start() throws JMSException {
+        if (state == State.CLOSED) {
             throw new JMSException("Connection has been closed");
         }
 
@@ -77,10 +98,8 @@ public class DwrConnection implements Connection
     /* (non-Javadoc)
      * @see javax.jms.Connection#stop()
      */
-    public void stop() throws JMSException
-    {
-        if (state == State.CLOSED)
-        {
+    public void stop() throws JMSException {
+        if (state == State.CLOSED) {
             throw new JMSException("Connection has been closed");
         }
 
@@ -90,65 +109,58 @@ public class DwrConnection implements Connection
     /* (non-Javadoc)
      * @see javax.jms.Connection#close()
      */
-    public void close() throws JMSException
-    {
+    public void close() throws JMSException {
         state = State.CLOSED;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Connection#setClientID(java.lang.String)
      */
-    public void setClientID(String clientId) throws JMSException
-    {
+    public void setClientID(String clientId) throws JMSException {
         this.clientId = clientId;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Connection#getClientID()
      */
-    public String getClientID() throws JMSException
-    {
+    public String getClientID() throws JMSException {
         return clientId;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Connection#setExceptionListener(javax.jms.ExceptionListener)
      */
-    public void setExceptionListener(ExceptionListener listener) throws JMSException
-    {
+    public void setExceptionListener(ExceptionListener listener) throws JMSException {
         this.listener = listener;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Connection#getExceptionListener()
      */
-    public ExceptionListener getExceptionListener() throws JMSException
-    {
+    public ExceptionListener getExceptionListener() throws JMSException {
         return listener;
     }
 
     /**
      * Children need to know if they can send messages.
+     *
      * @return Has {@link Connection#start()} been called
      */
-    public State getState()
-    {
+    public State getState() {
         return state;
     }
 
     /**
      * @return the servletContext
      */
-    public ServerContext getServerContext()
-    {
+    public ServerContext getServerContext() {
         return serverContext;
     }
 
     /**
      * @param serverContext the servletContext to set
      */
-    public void setServerContext(ServerContext serverContext)
-    {
+    public void setServerContext(ServerContext serverContext) {
         this.serverContext = serverContext;
     }
 

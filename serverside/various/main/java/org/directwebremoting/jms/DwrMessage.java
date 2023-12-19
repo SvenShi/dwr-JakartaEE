@@ -1,355 +1,324 @@
 package org.directwebremoting.jms;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.jms.DeliveryMode;
-import javax.jms.Destination;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.ObjectMessage;
-import javax.jms.TextMessage;
-
+import jakarta.jms.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.directwebremoting.Hub;
 import org.directwebremoting.event.MessageEvent;
 
+import java.io.Serializable;
+import java.lang.IllegalStateException;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * An implementation of all the {@link Message} types rolled into one.
  * This allows DWR to not know what type of Message the user wishes to work with
  * and to make the decision at runtime depending on how they choose to cast us.
+ *
  * @author Joe Walker [joe at getahead dot ltd dot uk]
  */
-public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessage
-{
+public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessage {
     /**
      * Default ctor
      */
-    public DwrMessage()
-    {
+    public DwrMessage() {
     }
 
     /**
      * Ctor for setting up a {@link TextMessage}
      */
-    public DwrMessage(String text)
-    {
+    public DwrMessage(String text) {
         setText(text);
     }
 
     /**
      * Ctor for setting up an {@link ObjectMessage}
      */
-    public DwrMessage(Serializable object)
-    {
+    public DwrMessage(Serializable object) {
         setObject(object);
     }
 
     /**
      * Ctor for propagation from the DWR {@link Hub}.
      */
-    public DwrMessage(Hub hub, MessageEvent message)
-    {
+    public DwrMessage(Hub hub, MessageEvent message) {
         setMessageEvent(hub, message);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#acknowledge()
      */
-    public void acknowledge()
-    {
+    public void acknowledge() {
         throw Unsupported.noManualAcknowledgment();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#clearBody()
      */
-    public void clearBody()
-    {
+    public void clearBody() {
         throw new IllegalStateException("Can raw JMS messages have bodies?");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getBody(Class<T> c) throws JMSException {
+        Serializable obj = getObject();
+        if (c.isInstance(obj)){
+            return (T)obj;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isBodyAssignableTo(Class c) throws JMSException {
+        return c.isInstance(getObject());
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#clearProperties()
      */
-    public void clearProperties()
-    {
+    public void clearProperties() {
         properties.clear();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getPropertyNames()
      */
-    public Enumeration<String> getPropertyNames()
-    {
+    public Enumeration<String> getPropertyNames() {
         return Collections.enumeration(properties.keySet());
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#propertyExists(java.lang.String)
      */
-    public boolean propertyExists(String name)
-    {
+    public boolean propertyExists(String name) {
         return properties.containsKey(name);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getBooleanProperty(java.lang.String)
      */
-    public boolean getBooleanProperty(String name)
-    {
+    public boolean getBooleanProperty(String name) {
         return Boolean.parseBoolean(getStringProperty(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getByteProperty(java.lang.String)
      */
-    public byte getByteProperty(String name)
-    {
+    public byte getByteProperty(String name) {
         return Byte.parseByte(getStringProperty(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getDoubleProperty(java.lang.String)
      */
-    public double getDoubleProperty(String name)
-    {
+    public double getDoubleProperty(String name) {
         return Double.parseDouble(getStringProperty(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getFloatProperty(java.lang.String)
      */
-    public float getFloatProperty(String name)
-    {
+    public float getFloatProperty(String name) {
         return Float.parseFloat(getStringProperty(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getIntProperty(java.lang.String)
      */
-    public int getIntProperty(String name)
-    {
+    public int getIntProperty(String name) {
         return Integer.parseInt(getStringProperty(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getLongProperty(java.lang.String)
      */
-    public long getLongProperty(String name)
-    {
+    public long getLongProperty(String name) {
         return Long.parseLong(getStringProperty(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getObjectProperty(java.lang.String)
      */
-    public Object getObjectProperty(String name)
-    {
+    public Object getObjectProperty(String name) {
         return properties.get(name);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getShortProperty(java.lang.String)
      */
-    public short getShortProperty(String name)
-    {
+    public short getShortProperty(String name) {
         return Short.parseShort(getStringProperty(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getStringProperty(java.lang.String)
      */
-    public String getStringProperty(String name)
-    {
+    public String getStringProperty(String name) {
         return properties.get(name).toString();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setBooleanProperty(java.lang.String, boolean)
      */
-    public void setBooleanProperty(String name, boolean value)
-    {
+    public void setBooleanProperty(String name, boolean value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setByteProperty(java.lang.String, byte)
      */
-    public void setByteProperty(String name, byte value)
-    {
+    public void setByteProperty(String name, byte value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setDoubleProperty(java.lang.String, double)
      */
-    public void setDoubleProperty(String name, double value)
-    {
+    public void setDoubleProperty(String name, double value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setFloatProperty(java.lang.String, float)
      */
-    public void setFloatProperty(String name, float value)
-    {
+    public void setFloatProperty(String name, float value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setIntProperty(java.lang.String, int)
      */
-    public void setIntProperty(String name, int value)
-    {
+    public void setIntProperty(String name, int value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setLongProperty(java.lang.String, long)
      */
-    public void setLongProperty(String name, long value)
-    {
+    public void setLongProperty(String name, long value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setObjectProperty(java.lang.String, java.lang.Object)
      */
-    public void setObjectProperty(String name, Object value)
-    {
+    public void setObjectProperty(String name, Object value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setShortProperty(java.lang.String, short)
      */
-    public void setShortProperty(String name, short value)
-    {
+    public void setShortProperty(String name, short value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setStringProperty(java.lang.String, java.lang.String)
      */
-    public void setStringProperty(String name, String value)
-    {
+    public void setStringProperty(String name, String value) {
         properties.put(name, value);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSCorrelationID()
      */
-    public String getJMSCorrelationID()
-    {
+    public String getJMSCorrelationID() {
         return correlationId;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSCorrelationIDAsBytes()
      */
-    public byte[] getJMSCorrelationIDAsBytes()
-    {
+    public byte[] getJMSCorrelationIDAsBytes() {
         return correlationId.getBytes();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSDeliveryMode()
      */
-    public int getJMSDeliveryMode()
-    {
+    public int getJMSDeliveryMode() {
         return deliveryMode;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSDestination()
      */
-    public Destination getJMSDestination()
-    {
+    public Destination getJMSDestination() {
         return destination;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSExpiration()
      */
-    public long getJMSExpiration()
-    {
+    public long getJMSExpiration() {
         return expiration;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSMessageID()
      */
-    public String getJMSMessageID()
-    {
+    public String getJMSMessageID() {
         return messageId;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSPriority()
      */
-    public int getJMSPriority()
-    {
+    public int getJMSPriority() {
         return priority;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSRedelivered()
      */
-    public boolean getJMSRedelivered()
-    {
+    public boolean getJMSRedelivered() {
         return redelivered;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSReplyTo()
      */
-    public Destination getJMSReplyTo()
-    {
+    public Destination getJMSReplyTo() {
         return replyTo;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSTimestamp()
      */
-    public long getJMSTimestamp()
-    {
+    public long getJMSTimestamp() {
         return timestamp;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#getJMSType()
      */
-    public String getJMSType()
-    {
+    public String getJMSType() {
         return type;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSCorrelationID(java.lang.String)
      */
-    public void setJMSCorrelationID(String correlationID)
-    {
+    public void setJMSCorrelationID(String correlationID) {
         this.correlationId = correlationID;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSCorrelationIDAsBytes(byte[])
      */
-    public void setJMSCorrelationIDAsBytes(byte[] correlationID)
-    {
+    public void setJMSCorrelationIDAsBytes(byte[] correlationID) {
         this.correlationId = new String(correlationID);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSDeliveryMode(int)
      */
-    public void setJMSDeliveryMode(int deliveryMode)
-    {
+    public void setJMSDeliveryMode(int deliveryMode) {
         this.deliveryMode = deliveryMode;
         throw Unsupported.noTransactions();
     }
@@ -357,33 +326,39 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSDestination(javax.jms.Destination)
      */
-    public void setJMSDestination(Destination destination)
-    {
+    public void setJMSDestination(Destination destination) {
         this.destination = destination;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSExpiration(long)
      */
-    public void setJMSExpiration(long expiration)
-    {
+    public void setJMSExpiration(long expiration) {
         this.expiration = expiration;
         throw Unsupported.noMessageExpiry();
+    }
+
+    @Override
+    public long getJMSDeliveryTime() throws JMSException {
+        return deliveryTime;
+    }
+
+    @Override
+    public void setJMSDeliveryTime(long deliveryTime) throws JMSException {
+        this.deliveryTime = deliveryTime;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSMessageID(java.lang.String)
      */
-    public void setJMSMessageID(String messageId)
-    {
+    public void setJMSMessageID(String messageId) {
         this.messageId = messageId;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSPriority(int)
      */
-    public void setJMSPriority(int priority)
-    {
+    public void setJMSPriority(int priority) {
         this.priority = priority;
         throw Unsupported.noMessagePriority();
     }
@@ -391,8 +366,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSRedelivered(boolean)
      */
-    public void setJMSRedelivered(boolean redelivered)
-    {
+    public void setJMSRedelivered(boolean redelivered) {
         this.redelivered = redelivered;
         throw Unsupported.noTransactions();
     }
@@ -400,8 +374,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSReplyTo(javax.jms.Destination)
      */
-    public void setJMSReplyTo(Destination replyTo)
-    {
+    public void setJMSReplyTo(Destination replyTo) {
         this.replyTo = replyTo;
         throw Unsupported.noPointToPoint();
     }
@@ -409,16 +382,14 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSTimestamp(long)
      */
-    public void setJMSTimestamp(long timestamp)
-    {
+    public void setJMSTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
     /* (non-Javadoc)
      * @see javax.jms.Message#setJMSType(java.lang.String)
      */
-    public void setJMSType(String type)
-    {
+    public void setJMSType(String type) {
         this.type = type;
     }
 
@@ -431,6 +402,12 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
      * @see DeliveryMode
      */
     private int deliveryMode;
+
+
+    /**
+     * the message's delivery time value
+     */
+    private long deliveryTime;
 
     /**
      * The topic or queue that we are destined for
@@ -477,101 +454,89 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
      */
     private Map<String, Object> properties = new HashMap<String, Object>();
 
-    // The methods from MapMessage 
+    // The methods from MapMessage
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getMapNames()
      */
-    public Enumeration<String> getMapNames()
-    {
+    public Enumeration<String> getMapNames() {
         return Collections.enumeration(map.keySet());
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#itemExists(java.lang.String)
      */
-    public boolean itemExists(String name)
-    {
+    public boolean itemExists(String name) {
         return map.containsKey(name);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getBoolean(java.lang.String)
      */
-    public boolean getBoolean(String name)
-    {
+    public boolean getBoolean(String name) {
         return Boolean.parseBoolean(getString(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getByte(java.lang.String)
      */
-    public byte getByte(String name)
-    {
+    public byte getByte(String name) {
         return Byte.parseByte(getString(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getBytes(java.lang.String)
      */
-    public byte[] getBytes(String name)
-    {
+    public byte[] getBytes(String name) {
         return getString(name).getBytes();
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getChar(java.lang.String)
      */
-    public char getChar(String name)
-    {
+    public char getChar(String name) {
         return getString(name).charAt(0);
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getDouble(java.lang.String)
      */
-    public double getDouble(String name)
-    {
+    public double getDouble(String name) {
         return Double.parseDouble(getString(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getFloat(java.lang.String)
      */
-    public float getFloat(String name)
-    {
+    public float getFloat(String name) {
         return Float.parseFloat(getString(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getInt(java.lang.String)
      */
-    public int getInt(String name)
-    {
+    public int getInt(String name) {
         return Integer.parseInt(getString(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getLong(java.lang.String)
      */
-    public long getLong(String name)
-    {
+    public long getLong(String name) {
         return Long.parseLong(getString(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getShort(java.lang.String)
      */
-    public short getShort(String name)
-    {
+    public short getShort(String name) {
         return Short.parseShort(getString(name));
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#getString(java.lang.String)
      */
-    public String getString(String name)
-    {
+    public String getString(String name) {
         return getObject(name).toString();
     }
 
@@ -579,35 +544,32 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
      * @see javax.jms.MapMessage#getObject(java.lang.String)
      */
     @SuppressWarnings("unchecked")
-    public Object getObject(String name)
-    {
-        switch (source)
-        {
-        case MAP:
-            return map.get(name);
+    public Object getObject(String name) {
+        switch (source) {
+            case MAP:
+                return map.get(name);
 
-        case MESSAGE_EVENT:
-            return message.getData(Map.class);
+            case MESSAGE_EVENT:
+                return message.getData(Map.class);
 
-        case NONE:
-            return "";
+            case NONE:
+                return "";
 
-        case SERIALIZABLE:
-            return ((Map<String, Object>) object).get(name);
+            case SERIALIZABLE:
+                return ((Map<String, Object>) object).get(name);
 
-        case TEXT:
-            return "";
+            case TEXT:
+                return "";
 
-        default:
-            return "";
+            default:
+                return "";
         }
     }
 
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setBoolean(java.lang.String, boolean)
      */
-    public void setBoolean(String name, boolean value)
-    {
+    public void setBoolean(String name, boolean value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -615,8 +577,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setByte(java.lang.String, byte)
      */
-    public void setByte(String name, byte value)
-    {
+    public void setByte(String name, byte value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -624,8 +585,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setBytes(java.lang.String, byte[])
      */
-    public void setBytes(String name, byte[] value)
-    {
+    public void setBytes(String name, byte[] value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -633,8 +593,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setBytes(java.lang.String, byte[], int, int)
      */
-    public void setBytes(String name, byte[] value, int offset, int length)
-    {
+    public void setBytes(String name, byte[] value, int offset, int length) {
         byte[] data = new byte[length];
         System.arraycopy(data, 0, value, offset, length);
         map.put(name, data);
@@ -644,8 +603,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setChar(java.lang.String, char)
      */
-    public void setChar(String name, char value)
-    {
+    public void setChar(String name, char value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -653,8 +611,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setDouble(java.lang.String, double)
      */
-    public void setDouble(String name, double value)
-    {
+    public void setDouble(String name, double value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -662,8 +619,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setFloat(java.lang.String, float)
      */
-    public void setFloat(String name, float value)
-    {
+    public void setFloat(String name, float value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -671,8 +627,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setInt(java.lang.String, int)
      */
-    public void setInt(String name, int value)
-    {
+    public void setInt(String name, int value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -680,8 +635,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setLong(java.lang.String, long)
      */
-    public void setLong(String name, long value)
-    {
+    public void setLong(String name, long value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -689,8 +643,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setObject(java.lang.String, java.lang.Object)
      */
-    public void setObject(String name, Object value)
-    {
+    public void setObject(String name, Object value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -698,8 +651,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setShort(java.lang.String, short)
      */
-    public void setShort(String name, short value)
-    {
+    public void setShort(String name, short value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -707,8 +659,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.MapMessage#setString(java.lang.String, java.lang.String)
      */
-    public void setString(String name, String value)
-    {
+    public void setString(String name, String value) {
         map.put(name, value);
         setSource(Source.MAP);
     }
@@ -718,35 +669,32 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.TextMessage#getText()
      */
-    public String getText()
-    {
-        switch (source)
-        {
-        case MAP:
-            return null;
+    public String getText() {
+        switch (source) {
+            case MAP:
+                return null;
 
-        case MESSAGE_EVENT:
-            return message.getData(String.class);
+            case MESSAGE_EVENT:
+                return message.getData(String.class);
 
-        case NONE:
-            return null;
+            case NONE:
+                return null;
 
-        case SERIALIZABLE:
-            return object.toString();
+            case SERIALIZABLE:
+                return object.toString();
 
-        case TEXT:
-            return text;
+            case TEXT:
+                return text;
 
-        default:
-            return null;
+            default:
+                return null;
         }
     }
 
     /* (non-Javadoc)
      * @see javax.jms.TextMessage#setText(java.lang.String)
      */
-    public void setText(String text)
-    {
+    public void setText(String text) {
         this.text = text;
         setSource(Source.TEXT);
     }
@@ -756,35 +704,32 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /* (non-Javadoc)
      * @see javax.jms.ObjectMessage#getObject()
      */
-    public Serializable getObject()
-    {
-        switch (source)
-        {
-        case MAP:
-            return null;
+    public Serializable getObject() {
+        switch (source) {
+            case MAP:
+                return null;
 
-        case MESSAGE_EVENT:
-            return (Serializable) message.getRawData();
+            case MESSAGE_EVENT:
+                return (Serializable) message.getRawData();
 
-        case NONE:
-            return null;
+            case NONE:
+                return null;
 
-        case SERIALIZABLE:
-            return object;
+            case SERIALIZABLE:
+                return object;
 
-        case TEXT:
-            return text;
+            case TEXT:
+                return text;
 
-        default:
-            return null;
+            default:
+                return null;
         }
     }
 
     /* (non-Javadoc)
      * @see javax.jms.ObjectMessage#setObject(java.io.Serializable)
      */
-    public void setObject(Serializable object)
-    {
+    public void setObject(Serializable object) {
         this.object = object;
         setSource(Source.SERIALIZABLE);
     }
@@ -793,8 +738,7 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
      * @param hub
      * @param message
      */
-    private void setMessageEvent(Hub hub, MessageEvent message)
-    {
+    private void setMessageEvent(Hub hub, MessageEvent message) {
         this.hub = hub;
         this.message = message;
         setSource(Source.MESSAGE_EVENT);
@@ -803,10 +747,8 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /**
      * We might want to warn people about gratuitous source type changes
      */
-    private void setSource(Source source)
-    {
-        if (this.source != null && this.source != source)
-        {
+    private void setSource(Source source) {
+        if (this.source != null && this.source != source) {
             log.warn("Changing source of message from " + this.source + " to " + source);
         }
 
@@ -816,10 +758,10 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
     /**
      * Where did the data for this message come from?
      */
-    enum Source
-    {
+    enum Source {
         /**
          * Use by the DWR Hub. Data is stored in hub and message
+         *
          * @see #hub
          * @see #message
          */
@@ -832,18 +774,21 @@ public class DwrMessage implements Message, MapMessage, TextMessage, ObjectMessa
 
         /**
          * Data is stored in text
+         *
          * @see #text
          */
         TEXT,
 
         /**
          * Data is stored in the map
+         *
          * @see #map
          */
         MAP,
 
         /**
          * Data is stored in the serializable object
+         *
          * @see #object
          */
         SERIALIZABLE,

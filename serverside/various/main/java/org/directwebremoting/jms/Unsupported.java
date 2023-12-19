@@ -1,6 +1,6 @@
 package org.directwebremoting.jms;
 
-import javax.jms.ConnectionConsumer;
+import jakarta.jms.ConnectionConsumer;
 
 /**
  * This class tracks the parts of the JMS spec that DWR to not support.

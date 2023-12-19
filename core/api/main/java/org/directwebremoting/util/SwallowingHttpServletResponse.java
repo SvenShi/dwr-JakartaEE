@@ -6,10 +6,10 @@ import java.io.Writer;
 import java.util.Collection;
 import java.util.Locale;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -99,7 +99,7 @@ public final class SwallowingHttpServletResponse implements HttpServletResponse
 
     /**
      * @return The MIME type of the content
-     * @see javax.servlet.ServletResponse#setContentType(String)
+     * @see jakarta.servlet.ServletResponse#setContentType(String)
      */
     public String getContentType()
     {
@@ -229,6 +229,20 @@ public final class SwallowingHttpServletResponse implements HttpServletResponse
         committed = true;
     }
 
+    @Override
+    public void sendRedirect(String location, int sc, boolean clearBuffer) throws IOException
+    {
+        if (committed)
+        {
+            throw new IllegalStateException("Cannot send redirect - response is already committed");
+        }
+
+        log.warn("Ignoring call to sendRedirect(" + location + ')');
+
+        redirectedUrl = location;
+        committed = true;
+    }
+
     /* (non-Javadoc)
      * @see javax.servlet.ServletResponseWrapper#setBufferSize(int)
      */
@@ -239,7 +253,7 @@ public final class SwallowingHttpServletResponse implements HttpServletResponse
 
     /**
      * @param characterEncoding The new encoding to use for response strings
-     * @see javax.servlet.ServletResponseWrapper#getCharacterEncoding()
+     * @see jakarta.servlet.ServletResponseWrapper#getCharacterEncoding()
      */
     public void setCharacterEncoding(String characterEncoding)
     {
@@ -250,6 +264,13 @@ public final class SwallowingHttpServletResponse implements HttpServletResponse
      * @see javax.servlet.ServletResponseWrapper#setContentLength(int)
      */
     public void setContentLength(int i)
+    {
+        // The content length of the original document is not likely to be the
+        // same as the content length of the new document.
+    }
+
+    @Override
+    public void setContentLengthLong(long l)
     {
         // The content length of the original document is not likely to be the
         // same as the content length of the new document.
@@ -302,7 +323,7 @@ public final class SwallowingHttpServletResponse implements HttpServletResponse
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#setStatus(int, java.lang.String)
+     * @see jakarta.servlet.http.HttpServletResponse#setStatus(int)
      * @deprecated
      */
     @Deprecated

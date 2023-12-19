@@ -1,7 +1,7 @@
 package org.directwebremoting.jms;
 
-import javax.jms.JMSException;
-import javax.jms.Topic;
+import jakarta.jms.JMSException;
+import jakarta.jms.Topic;
 
 /**
  * A {@link Topic} for DWR
@@ -10,7 +10,7 @@ import javax.jms.Topic;
 public class DwrTopic implements Topic
 {
     /**
-     * @see javax.jms.Session#createTopic(String)
+     * @see jakarta.jms.Session#createTopic(String)
      */
     public DwrTopic(String topicName)
     {

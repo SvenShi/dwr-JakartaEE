@@ -2,7 +2,7 @@ package org.directwebremoting.hibernate;
 
 import java.lang.reflect.Method;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;

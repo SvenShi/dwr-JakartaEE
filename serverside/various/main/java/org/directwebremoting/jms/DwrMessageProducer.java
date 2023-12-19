@@ -3,12 +3,9 @@ package org.directwebremoting.jms;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.jms.Destination;
-import javax.jms.IllegalStateException;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageProducer;
+import jakarta.jms.*;
 
+import jakarta.jms.IllegalStateException;
 import org.directwebremoting.Hub;
 import org.directwebremoting.HubFactory;
 import org.directwebremoting.ServerContext;
@@ -94,6 +91,16 @@ public class DwrMessageProducer implements MessageProducer
         return timeToLive;
     }
 
+    @Override
+    public void setDeliveryDelay(long deliveryDelay) throws JMSException {
+
+    }
+
+    @Override
+    public long getDeliveryDelay() throws JMSException {
+        return 0;
+    }
+
     /* (non-Javadoc)
      * @see javax.jms.MessageProducer#send(javax.jms.Message)
      */
@@ -149,6 +156,29 @@ public class DwrMessageProducer implements MessageProducer
         {
             throw new IllegalStateException("Unsuported Destination type (" + realDestination.getClass().getCanonicalName() + "). Only Topics are currently supported.");
         }
+    }
+
+    @Override
+    public void send(Message message, CompletionListener completionListener) throws JMSException {
+
+    }
+
+    @Override
+    public void send(Message message, int deliveryMode, int priority, long timeToLive,
+                     CompletionListener completionListener) throws JMSException {
+
+    }
+
+    @Override
+    public void send(Destination destination, Message message,
+                     CompletionListener completionListener) throws JMSException {
+
+    }
+
+    @Override
+    public void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive,
+                     CompletionListener completionListener) throws JMSException {
+
     }
 
     /* (non-Javadoc)

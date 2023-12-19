@@ -3,7 +3,7 @@ package org.directwebremoting.guice;
 import java.util.LinkedList;
 import java.util.concurrent.Callable;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.directwebremoting.ServerContext;
 import org.directwebremoting.WebContext;

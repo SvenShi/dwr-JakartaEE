@@ -1,8 +1,8 @@
 package org.directwebremoting.jms;
 
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageListener;
+import jakarta.jms.Message;
+import jakarta.jms.MessageConsumer;
+import jakarta.jms.MessageListener;
 
 /**
  * A {@link MessageListener} especially for {@link DwrMessageConsumer} that

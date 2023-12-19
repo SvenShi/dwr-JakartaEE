@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -162,7 +162,7 @@ public class SpringCreator extends AbstractCreator implements Creator
         {
             // Probably on boot time
         }
-        return request != null ? RequestContextUtils.getWebApplicationContext(request, srvCtx) : WebApplicationContextUtils.getWebApplicationContext(srvCtx);
+        return request != null ? RequestContextUtils.findWebApplicationContext(request) : WebApplicationContextUtils.getWebApplicationContext(srvCtx);
     }
 
     /**

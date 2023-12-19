@@ -2,7 +2,7 @@ package org.directwebremoting.hibernate;
 
 import java.beans.PropertyDescriptor;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.directwebremoting.ConversionException;
 import org.directwebremoting.WebContextFactory;

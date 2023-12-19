@@ -33,9 +33,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Mock implementation of the HttpServletResponse interface.
@@ -162,6 +162,17 @@ public class FakeHttpServletResponse implements HttpServletResponse
         committed = true;
     }
 
+    @Override
+    public void sendRedirect(String location, int sc, boolean clearBuffer) throws IOException {
+        if (committed)
+        {
+            throw new IllegalStateException("Cannot send redirect - response is already committed");
+        }
+
+        redirectedUrl = location;
+        committed = true;
+    }
+
     /**
      * Accessor for the redirect URL set using {@link #sendRedirect(String)}
      * @return The redirect URL
@@ -225,6 +236,11 @@ public class FakeHttpServletResponse implements HttpServletResponse
     public void setContentLength(int contentLength)
     {
         this.contentLength = contentLength;
+    }
+
+    @Override
+    public void setContentLengthLong(long len) {
+        this.contentLength = (int) len;
     }
 
     /**

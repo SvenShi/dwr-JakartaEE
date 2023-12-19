@@ -2,18 +2,7 @@ package org.directwebremoting.jms;
 
 import java.io.Serializable;
 
-import javax.jms.BytesMessage;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueBrowser;
-import javax.jms.Session;
-import javax.jms.StreamMessage;
-import javax.jms.TemporaryQueue;
-import javax.jms.TemporaryTopic;
-import javax.jms.Topic;
-import javax.jms.TopicSubscriber;
+import jakarta.jms.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,10 +14,10 @@ import org.apache.commons.logging.LogFactory;
 public class DwrSession implements Session
 {
     /**
-     * @see javax.jms.Connection#createSession(boolean, int)
+     * @see jakarta.jms.Connection#createSession(boolean, int)
      * @param transacted See {@link Session#getTransacted()}
      * @param acknowledgeMode See {@link Session#getAcknowledgeMode()}
-     * @param connection 
+     * @param connection
      */
     public DwrSession(DwrConnection connection, boolean transacted, int acknowledgeMode)
     {
@@ -151,6 +140,17 @@ public class DwrSession implements Session
         return new DwrMessageConsumer(connection, destination, messageSelector, noLocal);
     }
 
+    @Override
+    public MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName) throws JMSException {
+        return null;
+    }
+
+    @Override
+    public MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName,
+                                                String messageSelector) throws JMSException {
+        return null;
+    }
+
     /* (non-Javadoc)
      * @see javax.jms.Session#createDurableSubscriber(javax.jms.Topic, java.lang.String)
      */
@@ -165,6 +165,28 @@ public class DwrSession implements Session
     public TopicSubscriber createDurableSubscriber(Topic topic, String name, String messageSelector, boolean noLocal) throws JMSException
     {
         throw Unsupported.noDurableSubscriptions();
+    }
+
+    @Override
+    public MessageConsumer createDurableConsumer(Topic topic, String name) throws JMSException {
+        return null;
+    }
+
+    @Override
+    public MessageConsumer createDurableConsumer(Topic topic, String name, String messageSelector,
+                                                 boolean noLocal) throws JMSException {
+        return null;
+    }
+
+    @Override
+    public MessageConsumer createSharedDurableConsumer(Topic topic, String name) throws JMSException {
+        return null;
+    }
+
+    @Override
+    public MessageConsumer createSharedDurableConsumer(Topic topic, String name,
+                                                       String messageSelector) throws JMSException {
+        return null;
     }
 
     /* (non-Javadoc)

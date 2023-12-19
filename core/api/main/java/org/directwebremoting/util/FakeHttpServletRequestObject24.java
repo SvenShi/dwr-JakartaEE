@@ -15,13 +15,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.*;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -272,7 +269,7 @@ class FakeHttpServletRequestObject24 // Note: does not implement interface as we
     }
 
     /**
-     * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromUrl()
+     * @see HttpServletRequest#isRequestedSessionIdFromURL() ()
      * @deprecated
      */
     @Deprecated
@@ -349,6 +346,21 @@ class FakeHttpServletRequestObject24 // Note: does not implement interface as we
     {
         return new ServletInputStream()
         {
+            @Override
+            public boolean isFinished() {
+                return proxy.available() == 0;
+            }
+
+            @Override
+            public boolean isReady() {
+                return true;
+            }
+
+            @Override
+            public void setReadListener(ReadListener readListener) {
+
+            }
+
             private final ByteArrayInputStream proxy = new ByteArrayInputStream(content);
 
             /* (non-Javadoc)
@@ -648,15 +660,6 @@ class FakeHttpServletRequestObject24 // Note: does not implement interface as we
         };
     }
 
-    /**
-     * @see javax.servlet.ServletRequest#getRealPath(java.lang.String)
-     * @deprecated
-     */
-    @Deprecated
-    public String getRealPath(String path)
-    {
-        return null;
-    }
 
     /**
      * The character encoding in the supposed request
