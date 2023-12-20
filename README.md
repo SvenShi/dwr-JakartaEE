@@ -1,3 +1,12 @@
+- **个人简单修改版，用于实际生产项目改造升级，目前仍未实际投产请谨慎选择使用！**
+- **目前个人简单测试后可以正常工作，实际情况请自行测试！**
+- **安装方法见下面的 `Install to Maven` 章节**
+<br/>
+
+- **A simple modified version for personal use, used for transformation and upgrading of actual production projects. It has not yet been put into actual production, please choose to use it with caution!**
+- **At present, it can work normally after a simple personal test. Please test it yourself for actual conditions!**
+- **For installation methods, see the `Install to Maven` chapter below.**
+
 # DWR - Direct Web Remoting
 
 DWR is a Java library that enables Java on the server and JavaScript in a browser to interact and call each other as simply as possible.
